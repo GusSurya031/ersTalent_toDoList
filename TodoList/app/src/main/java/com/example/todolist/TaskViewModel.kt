@@ -34,6 +34,13 @@ class TaskViewModel: ViewModel () {
         taskItems.postValue(list)
     }
 
+    fun setUncompleted(taskItem: TaskItem) {
+        val list = taskItems.value ?: return
+        val task = list.find { it.id == taskItem.id } ?: return
+        task.completedDate = null // Set completedDate ke null
+        taskItems.postValue(list)
+    }
+
     fun deleteTaskItem(taskItem: TaskItem) {
         val list = taskItems.value ?: return
         list.remove(taskItem)

@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
                     android.Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
+                // Jika izin belum diberikan, kita akan memintanya
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
     private fun requestExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (!isExactAlarmPermissionGranted()) {
+                // Minta izin ke pengguna untuk mengatur alarm yang sangat tepat
                 val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
                 startActivity(intent)
             }
@@ -73,10 +75,11 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
 
     private fun isExactAlarmPermissionGranted(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Cek apakah aplikasi sudah memiliki izin untuk alarm yang sangat tepat
             val permission = Settings.canDrawOverlays(this)
             permission
         } else {
-            true
+            true // Untuk versi Android yang lebih rendah, izin ini sudah diberikan secara otomatis
         }
     }
 
@@ -88,6 +91,11 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
     override fun completeTaskItem(taskItem: TaskItem) {
         taskViewModel.setCompleted(taskItem)
     }
+
+    override fun uncompleteTaskItem(taskItem: TaskItem) {
+        taskViewModel.setUncompleted(taskItem)
+    }
+
 
     override fun deleteTaskItem(taskItem: TaskItem) {
         taskViewModel.deleteTaskItem(taskItem)
