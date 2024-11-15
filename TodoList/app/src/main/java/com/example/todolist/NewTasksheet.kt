@@ -22,32 +22,34 @@ class NewTasksheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val activity = requireActivity()
 
-        if(taskItem != null){
+        if (taskItem != null) {
             binding.taskTittle.text = "Edit Task"
             val editable = Editable.Factory.getInstance()
             binding.name.text = editable.newEditable(taskItem!!.name)
-            if (taskItem!!.dueTime != null){
+            if (taskItem!!.dueTime != null) {
                 dueTime = taskItem!!.dueTime!!
                 updateTimeButtonText()
             }
-        }else{
+        } else {
             binding.taskTittle.text = "New Task"
         }
+
         taskViewModel = ViewModelProvider(activity).get(TaskViewModel::class.java)
+
         binding.saveButton.setOnClickListener {
             saveAction()
         }
+
         binding.timePickerButton.setOnClickListener {
             openTimePicker()
         }
-
     }
 
     @SuppressLint("NewApi")
     private fun openTimePicker() {
         if (dueTime == null)
             dueTime = LocalTime.now()
-        val listener = TimePickerDialog.OnTimeSetListener{_, selectedHour, selectedMinute ->
+        val listener = TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
             dueTime = LocalTime.of(selectedHour, selectedMinute)
             updateTimeButtonText()
         }
@@ -61,18 +63,25 @@ class NewTasksheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
         binding.timePickerButton.text = String.format("%02d:%02d", dueTime!!.hour, dueTime!!.minute)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentNewTasksheetBinding.inflate(inflater,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentNewTasksheetBinding.inflate(inflater, container, false)
         return binding.root
     }
-    private fun saveAction(){
-        val name= binding.name.text.toString()
-        if (taskItem == null){
+
+    private fun saveAction() {
+        val name = binding.name.text.toString()
+        if (taskItem == null) {
             val newTask = TaskItem(name, dueTime, null)
             taskViewModel.addTaskItem(newTask)
-        }else{
+        } else {
             taskViewModel.updateTaskItem(taskItem!!.id, name, dueTime)
         }
+
+        // Panggil NotificationHelper setelah menyimpan task
+        NotificationHelper.showTaskSavedNotification(requireContext())
+
         binding.name.setText("")
         dismiss()
     }
