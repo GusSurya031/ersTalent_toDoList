@@ -43,6 +43,18 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_gravity="center"
             />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleY="1.5"
+            android:scaleX="1.5"
+            android:id="@+id/deleteButton"
+            android:contentDescription="@string/delete_task"
+            android:layout_marginHorizontal="15dp"
+            android:src="@drawable/delete_24"
+            android:backgroundTint="@color/transparent"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
