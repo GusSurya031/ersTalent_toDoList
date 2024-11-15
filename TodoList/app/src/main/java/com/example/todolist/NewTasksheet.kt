@@ -7,6 +7,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.todolist.databinding.FragmentNewTasksheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -38,7 +39,14 @@ class NewTasksheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
 
         binding.saveButton.setOnClickListener {
             saveAction()
+            if (dueTime != null) {
+                val hour = dueTime!!.hour
+                val minute = dueTime!!.minute
+                AlarmHelper.setTaskAlarm(requireContext(), hour, minute)
+            }
         }
+
+
 
         binding.timePickerButton.setOnClickListener {
             openTimePicker()
@@ -72,17 +80,27 @@ class NewTasksheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
 
     private fun saveAction() {
         val name = binding.name.text.toString()
-        if (taskItem == null) {
-            val newTask = TaskItem(name, dueTime, null)
-            taskViewModel.addTaskItem(newTask)
+        if (name.isNotEmpty()) {
+            if (taskItem == null) {
+                val newTask = TaskItem(name, dueTime, null)
+                taskViewModel.addTaskItem(newTask)
+            } else {
+                taskViewModel.updateTaskItem(taskItem!!.id, name, dueTime)
+            }
+
+            NotificationHelper.showTaskSavedNotification(requireContext())
+
+            if (dueTime != null) {
+                val hour = dueTime!!.hour  // Ambil jam dari dueTime
+                val minute = dueTime!!.minute  // Ambil menit dari dueTime
+                AlarmHelper.setTaskAlarm(requireContext(), hour, minute)
+            }
+
+            binding.name.setText("")
+            dismiss()
         } else {
-            taskViewModel.updateTaskItem(taskItem!!.id, name, dueTime)
+            Toast.makeText(requireContext(), "Task name cannot be empty!", Toast.LENGTH_SHORT).show()
         }
-
-        // Panggil NotificationHelper setelah menyimpan task
-        NotificationHelper.showTaskSavedNotification(requireContext())
-
-        binding.name.setText("")
-        dismiss()
     }
+
 }
