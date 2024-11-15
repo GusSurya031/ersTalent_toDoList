@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.todolist"
-    compileSdk = 35  // Perbarui ke API 34
+    compileSdk = 35 
     defaultConfig {
         applicationId = "com.example.todolist"
         minSdk = 31
-        targetSdk = 34  // Perbarui ke API 34
+        targetSdk = 34 
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
