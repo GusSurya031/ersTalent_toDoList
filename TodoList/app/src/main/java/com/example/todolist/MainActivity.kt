@@ -1,5 +1,6 @@
 package com.example.todolist
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.databinding.ActivityMainBinding
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import android.provider.Settings
 
 class MainActivity : AppCompatActivity(), TaskItemClickListener {
 
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         checkNotificationPermission()
+        requestExactAlarmPermission()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
@@ -60,6 +63,27 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
         }
     }
 
+    private fun requestExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!isExactAlarmPermissionGranted()) {
+                // Minta izin ke pengguna untuk mengatur alarm yang sangat tepat
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun isExactAlarmPermissionGranted(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Cek apakah aplikasi sudah memiliki izin untuk alarm yang sangat tepat
+            val permission = Settings.canDrawOverlays(this)
+            permission
+        } else {
+            true // Untuk versi Android yang lebih rendah, izin ini sudah diberikan secara otomatis
+        }
+    }
+
+
     override fun editTaskItem(taskItem: TaskItem) {
         NewTasksheet(taskItem).show(supportFragmentManager, "newTaskTag")
     }
@@ -67,6 +91,11 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
     override fun completeTaskItem(taskItem: TaskItem) {
         taskViewModel.setCompleted(taskItem)
     }
+
+    override fun uncompleteTaskItem(taskItem: TaskItem) {
+        taskViewModel.setUncompleted(taskItem)
+    }
+
 
     override fun deleteTaskItem(taskItem: TaskItem) {
         taskViewModel.deleteTaskItem(taskItem)

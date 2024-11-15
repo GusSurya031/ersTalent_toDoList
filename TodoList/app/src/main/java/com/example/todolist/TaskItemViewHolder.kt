@@ -29,8 +29,15 @@ class TaskItemViewHolder(
         binding.completeButton.setColorFilter(taskItem.imageColor(context))
 
         binding.completeButton.setOnClickListener {
-            clickListener.completeTaskItem(taskItem)
+            if (taskItem.isCompleted()) {
+                // Jika tugas sudah selesai, ubah menjadi tidak selesai (uncomplete)
+                clickListener.uncompleteTaskItem(taskItem)
+            } else {
+                // Jika tugas belum selesai, tandai sebagai selesai (complete)
+                clickListener.completeTaskItem(taskItem)
+            }
         }
+
 
         binding.deleteButton.setOnClickListener{
             clickListener.deleteTaskItem(taskItem)
