@@ -1,64 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".NewTasksheet">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/taskTittle"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Task"
-        android:textSize="30sp"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        style="@style/TextAppearance.AppCompat.Title"/>
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/new_task"
+        android:textColor="@color/darkGreen"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
+        android:id="@+id/taskDescription"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/roboto_normal"
+        android:text="@string/task_description"
+        android:textSize="15sp" />
 
-        <com.google.android.material.textfield.TextInputEditText
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/name"
-            android:hint="Name"/>
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:textColor="@color/white"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
+            app:hintTextColor="@color/white">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_edit_text"
+                android:fontFamily="@font/roboto_normal"
+                android:gravity="start|top"
+                android:hint="@string/name"
+                android:inputType="textMultiLine|textCapSentences"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/black"
+                android:textColorHint="@color/black"
+                android:textColorLink="@color/black"
+                android:textCursorDrawable="@drawable/black_cursor"
+                android:textSize="15sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:layout_marginHorizontal="20dp">
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/timePickerButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="20dp"
-        android:text="Select Time"/>
+        android:orientation="horizontal"
+        android:layout_marginVertical="10dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="20dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:textColor="?colorOnPrimary"
-        android:text="Save"/>
-    
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/timePickerButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/darkGreen"
+            android:text="@string/select_time"
+            android:textColor="?colorOnPrimary"
+            app:cornerRadius="20dp"
+            android:elevation="8dp"/>
 
-        
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/darkGreen"
+            android:text="@string/save"
+            android:textColor="?colorOnPrimary"
+            app:cornerRadius="20dp"
+            android:elevation="8dp"/>
+    </LinearLayout>
 </LinearLayout>

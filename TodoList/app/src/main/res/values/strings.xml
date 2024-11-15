@@ -6,4 +6,17 @@
     <string name="checkbox">CheckBox</string>
     <string name="delete" />
     <string name="delete_task">Delete Task</string>
+    <string name="select_time">Select Time</string>
+    <string name="save">Save</string>
+    <string name="new_task">Add New Task</string>
+    <string name="name">add new task</string>
+    <string name="task_description">Enter a title or description for the task you need to complete. Click \"Save\" to add it to your to-do list.</string>
+    <string name="search" />
+    <string name="notifications">Notifications</string>
+    <string name="add">Add Alarm</string>
+    <string name="settings">Settings</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="filter_priority">Filter Priority</string>
+    <string name="todo_list">New Todo List</string>
+    <string name="desc_top_list">Organize your daily tasks efficiently.</string>
 </resources>
