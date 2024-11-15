@@ -6,7 +6,8 @@
     app:cardCornerRadius="5dp"
     android:layout_margin="5dp"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
