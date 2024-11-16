@@ -3,7 +3,6 @@ package com.example.todolist
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
