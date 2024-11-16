@@ -5,19 +5,17 @@ plugins {
 
 android {
     namespace = "com.example.todolist"
-    compileSdk = 35
-
+    compileSdk = 35 
     defaultConfig {
         applicationId = "com.example.todolist"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 31
+        targetSdk = 34 
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
@@ -30,17 +28,19 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildToolsVersion = "35.0.0"
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -49,4 +49,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
 }

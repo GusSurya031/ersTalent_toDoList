@@ -13,27 +13,37 @@ class TaskViewModel: ViewModel () {
         taskItems.value = mutableListOf()
     }
 
-    fun addTaskItem(newTask: TaskItem){
-        val list = taskItems.value
-        list!!.add(newTask)
+    fun addTaskItem(newTask: TaskItem) {
+        val list = taskItems.value ?: mutableListOf()
+        list.add(newTask)
         taskItems.postValue(list)
     }
 
-    fun updateTaskItem(id: UUID, name: String, dueTime: LocalTime?){
-        val list = taskItems.value
-        val task = list!!.find{it.id == id}!!
+    fun updateTaskItem(id: UUID, name: String, dueTime: LocalTime?) {
+        val list = taskItems.value ?: return
+        val task = list.find { it.id == id } ?: return
         task.name = name
         task.dueTime = dueTime
         taskItems.postValue(list)
     }
 
-    fun setCompleted(taskItem: TaskItem){
-        val list = taskItems.value
-        val task = list!!.find { it.id == taskItem.id }!!
-        if (task != null) {
-            task.completedDate = LocalDate.now()
-            list.remove(task)
-            taskItems.postValue(list)
-        }
+    fun setCompleted(taskItem: TaskItem) {
+        val list = taskItems.value ?: return
+        val task = list.find { it.id == taskItem.id } ?: return
+        task.completedDate = LocalDate.now()
+        taskItems.postValue(list)
+    }
+
+    fun setUncompleted(taskItem: TaskItem) {
+        val list = taskItems.value ?: return
+        val task = list.find { it.id == taskItem.id } ?: return
+        task.completedDate = null // Set completedDate ke null
+        taskItems.postValue(list)
+    }
+
+    fun deleteTaskItem(taskItem: TaskItem) {
+        val list = taskItems.value ?: return
+        list.remove(taskItem)
+        taskItems.postValue(list)
     }
 }
