@@ -13,6 +13,7 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var nextButton: MaterialButton
     private lateinit var finishButton: MaterialButton
+    private lateinit var prevButton: MaterialButton
 
     private val onboardingItems: List<OnboardingItem> = listOf(
         OnboardingItem(R.drawable.img_home_1, R.string.title_home_1, R.string.p_home_1),
@@ -28,6 +29,7 @@ class OnboardingActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.viewPager)
         nextButton = findViewById(R.id.nextButton)
         finishButton = findViewById(R.id.finishButton)
+        prevButton = findViewById(R.id.prevButton)
 
         val adapter = OnboardingAdapter(onboardingItems)
         viewPager.adapter = adapter
@@ -41,9 +43,17 @@ class OnboardingActivity : AppCompatActivity() {
                 } else {
                     finishButton.visibility = View.GONE
                     nextButton.visibility = View.VISIBLE
+                    prevButton.visibility = if (position == 0) View.GONE else View.VISIBLE
                 }
             }
         })
+
+        prevButton.setOnClickListener {
+            val prevItem = viewPager.currentItem - 1
+            if (prevItem >= 0) {
+                viewPager.currentItem = prevItem
+            }
+        }
 
         nextButton.setOnClickListener {
             val nextItem = viewPager.currentItem + 1

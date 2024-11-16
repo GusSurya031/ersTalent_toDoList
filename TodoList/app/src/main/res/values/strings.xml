@@ -18,7 +18,7 @@
     <string name="todo_list">New Todo List</string>
     <string name="desc_top_list">Organize your daily tasks efficiently.</string>
     <string name="img_home">"Simple To-Do List"</string>
-    <string name="prev">Prev\n</string>
+    <string name="prev">Prev</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="title_home_1">Simple To-Do List</string>
@@ -28,4 +28,5 @@
     <string name="title_home_3">Schedule Your Tasks in Just a Few Taps</string>
     <string name="p_home_3">With TaskEase, scheduling your tasks is quick and easy. Add tasks and set reminders with just a few taps. Stay on track and maintain your productivity all day long.</string>
     <string name="middle_text">©ErsTalent</string>
+    <string name="finish">Finish</string>
 </resources>
