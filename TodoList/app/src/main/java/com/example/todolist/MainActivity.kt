@@ -1,10 +1,13 @@
 package com.example.todolist
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.todolist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), TaskItemClickListener {
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        startActivity(Intent(this, OnboardingActivity::class.java))
         taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         binding.newTaskButton.setOnClickListener {
             NewTasksheet(null).show(supportFragmentManager, "newTaskTag")
