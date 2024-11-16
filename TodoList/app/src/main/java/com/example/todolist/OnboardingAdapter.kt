@@ -1,4 +1,3 @@
-// OnboardingAdapter.kt
 package com.example.todolist
 
 import android.view.LayoutInflater

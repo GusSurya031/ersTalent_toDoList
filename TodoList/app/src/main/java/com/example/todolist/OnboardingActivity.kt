@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.button.MaterialButton
 
@@ -21,6 +22,7 @@ class OnboardingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(R.layout.activity_onboarding)
 
         viewPager = findViewById(R.id.viewPager)
@@ -51,13 +53,8 @@ class OnboardingActivity : AppCompatActivity() {
         }
 
         finishButton.setOnClickListener {
-            val sharedPref = getSharedPreferences("onboarding", MODE_PRIVATE)
-            with(sharedPref.edit()) {
-                putBoolean("onboarding_complete", true)
-                apply()
-            }
             val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             finish()
         }
