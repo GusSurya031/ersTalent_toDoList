@@ -19,4 +19,16 @@
     <string name="filter_priority">Filter Priority</string>
     <string name="todo_list">New Todo List</string>
     <string name="desc_top_list">Organize your daily tasks efficiently.</string>
+    <string name="img_home">"Simple To-Do List"</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="title_home_1">Simple To-Do List</string>
+    <string name="p_home_1">Plan your day effortlessly with TaskEase. Organize your tasks in a few simple steps. Stay focused on what matters most, all in one place. With intuitive features and a user-friendly interface, you can prioritize your goals and track your progress seamlessly.</string>
+    <string name="title_home_2">Set Priorities and Stay Organized</string>
+    <string name="p_home_2">Easily prioritize your tasks for the day. Break them down into manageable steps to avoid feeling overwhelmed. Keep your day in order and never miss a deadline again. Set reminders and notifications to stay on track, ensuring that you focus on what truly matters. With TaskEase, you can cultivate a productive routine that empowers you to achieve your goals effortlessly.</string>
+    <string name="title_home_3">Schedule Your Tasks in Just a Few Taps</string>
+    <string name="p_home_3">With TaskEase, scheduling your tasks is quick and easy. Add tasks and set reminders with just a few taps. Stay on track and maintain your productivity all day long.</string>
+    <string name="middle_text">©ErsTalent</string>
+    <string name="finish">Finish</string>
 </resources>
